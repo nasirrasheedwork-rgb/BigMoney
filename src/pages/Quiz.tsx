@@ -573,7 +573,7 @@ export default function Quiz() {
                 </p>
               </div>
             </div>
-          </div>
+          </section>
         </main>
         
         <Footer />
@@ -646,75 +646,3 @@ export default function Quiz() {
                     Worth: $5 Free Ticket
                   </div>
                 </div>
-                
-                <h3 className="text-xl md:text-2xl font-display font-semibold mb-8 text-center leading-relaxed">
-                  {expertQuestions[currentQuestion].question}
-                </h3>
-
-                <div className="space-y-4">
-                  {expertQuestions[currentQuestion].options.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleAnswerSelect(index)}
-                      disabled={timeLeft === 0}
-                      className={`w-full p-6 text-left rounded-lg border-2 transition-all duration-200 ${
-                        selectedAnswers[currentQuestion] === index
-                          ? 'border-primary bg-primary/20 text-primary shadow-lg'
-                          : 'border-accent/30 hover:border-accent/60 hover:bg-accent/10'
-                      } ${timeLeft === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md'}`}
-                    >
-                      <div className="flex items-center space-x-4">
-                        <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center font-bold ${
-                          selectedAnswers[currentQuestion] === index
-                            ? 'border-primary bg-primary text-primary-foreground'
-                            : 'border-accent/50 text-accent'
-                        }`}>
-                          {String.fromCharCode(65 + index)}
-                        </div>
-                        <span className="text-lg">{option}</span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Navigation */}
-              <div className="flex justify-between items-center">
-                <div className="text-sm text-secondary-foreground">
-                  {selectedAnswers.filter(a => a !== undefined).length} of {expertQuestions.length} answered
-                </div>
-                
-                <PremiumButton
-                  variant="gold"
-                  size="lg"
-                  onClick={handleNext}
-                  disabled={selectedAnswers[currentQuestion] === undefined || timeLeft === 0}
-                >
-                  {currentQuestion === expertQuestions.length - 1 ? 'Submit Challenge' : 'Next Question'}
-                </PremiumButton>
-              </div>
-
-              {/* Warning */}
-              <div className="mt-8 p-6 glass rounded-lg border border-warning/30">
-                <div className="flex items-start space-x-4">
-                  <AlertTriangle className="w-6 h-6 text-warning flex-shrink-0 mt-1" />
-                  <div className="text-sm text-secondary-foreground">
-                    <p className="font-medium text-warning mb-2">Critical Rules:</p>
-                    <ul className="space-y-1">
-                      <li>• You cannot return to previous questions</li>
-                      <li>• Timer will auto-advance if no answer is selected</li>
-                      <li>• All 10 answers must be correct to earn the free ticket</li>
-                      <li>• Only one attempt allowed per 24-hour period</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
-  );
-}
